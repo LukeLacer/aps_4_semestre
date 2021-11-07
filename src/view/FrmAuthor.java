@@ -114,7 +114,7 @@ public class FrmAuthor extends javax.swing.JFrame {
     private void jBNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBNovoMouseClicked
         author = new Author();
         author.setName(jTfName.getText());
-        author.setFname(jTfFullName.getText());
+        author.setFname(jTfFullName.getText());        
         if (ctrAuthor.gravarAuthor(author) == 1) {
         JOptionPane.showMessageDialog(null, "Salvo no banco");
         } else {
