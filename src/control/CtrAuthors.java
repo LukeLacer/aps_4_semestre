@@ -27,22 +27,22 @@ public class CtrAuthors {
             return null;
         }
     }
-    public boolean excluirAuthor(Author author) {
+    public int excluirAuthor(Author author) {
         try {
             acessohibernateauthor.excluir(author);
-            return true;
+            return 1;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
-    public boolean alterarAuthor(Author author) {
+    public int alterarAuthor(Author author) {
         try {
             acessohibernateauthor.alterar(author);
-            return true;
+            return 1;
         } catch (HibernateException e) {
             e.printStackTrace();
-            return false;
+            return 2;
         }
     }
 

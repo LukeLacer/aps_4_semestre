@@ -3,17 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package view.author;
 
+import view.author.FrmAuthor;
 import control.CtrAuthors;
 import javax.swing.JOptionPane;
 import model.Author;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author lucas
  */
-public class FrmAuthor extends javax.swing.JFrame {
+public class FrmListAuthors extends javax.swing.JFrame {
     
     CtrAuthors ctrAuthor;
     Author author;
@@ -21,7 +26,7 @@ public class FrmAuthor extends javax.swing.JFrame {
     /**
      * Creates new form FrmAuthor
      */
-    public FrmAuthor() {
+    public FrmListAuthors() {
         initComponents();
     }
 
@@ -35,10 +40,8 @@ public class FrmAuthor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTfName = new javax.swing.JTextField();
-        jTfFullName = new javax.swing.JTextField();
-        jBNovo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -47,22 +50,10 @@ public class FrmAuthor extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Name");
+        jLabel2.setText("Autores");
 
-        jLabel3.setText("Full Name");
-
-        jTfName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTfNameActionPerformed(evt);
-            }
-        });
-
-        jBNovo.setText("Novo");
-        jBNovo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBNovoMouseClicked(evt);
-            }
-        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,57 +61,44 @@ public class FrmAuthor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBNovo)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTfFullName))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(29, 29, 29)
-                            .addComponent(jTfName, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 183, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTfFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBNovo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTfNameActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ctrAuthor = new CtrAuthors();
         author = new Author();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jBNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBNovoMouseClicked
-        author = new Author();
-        author.setName(jTfName.getText());
-        author.setFname(jTfFullName.getText());        
-        if (ctrAuthor.gravarAuthor(author) == 1) {
-        JOptionPane.showMessageDialog(null, "Salvo no banco");
-        } else {
-        JOptionPane.showMessageDialog(null, "Não foi possível salvar");
+        
+        DefaultListModel listModel = new DefaultListModel();
+        List listDepartamento = new ArrayList();
+        listDepartamento = ctrAuthor.carregarAuthors();
+        if (listDepartamento != null && !listDepartamento.isEmpty()) {
+            Iterator i = listDepartamento.iterator();
+            while (i.hasNext()) {
+                author = (Author) i.next();
+            listModel.addElement("Nome: " + author.getFname() + " id:" + author.getAuthor_id());
+            }
+            jList1.setModel(listModel);
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhum Autor disponível para listar!!");
         }
-    }//GEN-LAST:event_jBNovoMouseClicked
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -152,16 +130,14 @@ public class FrmAuthor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmAuthor().setVisible(true);
+                new FrmListAuthors().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBNovo;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTfFullName;
-    private javax.swing.JTextField jTfName;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
