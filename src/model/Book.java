@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.sound.sampled.SourceDataLine;
-
 //Created By Victor Hugo(VeK) on 01/11/2021
 //01/11/2021 - Building the class atributes 
 //10/11/2021 - Creating methods to check the atributes before creating the object
