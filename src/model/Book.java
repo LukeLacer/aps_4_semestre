@@ -201,6 +201,18 @@ public class Book {
         return isPriceOk;
     }
 
+    // Removes book from arraylist
+    public void removeBook(String isbn) {
+        for (Book book : books) {
+            if (book.getISBN().equals(isbn)) {
+                books.remove(book);
+                return;
+            }
+        }
+
+        System.out.println("Livro não encontrado");
+    }
+
     // Maybe this will check if the publisher exists
     /*
      * public boolean publisherCheck(Integer publisherID){ boolean isPublisherOk =

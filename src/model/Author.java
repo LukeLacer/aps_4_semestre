@@ -124,4 +124,15 @@ public class Author {
         return isNameOK;
     }
 
+    // Removing Author from ArrayList
+    public void removeAuthor(Integer authorID) {
+        for (Author author : authors) {
+            if (author.getAuthor_id().equals(authorID)) {
+                authors.remove(author);
+                return;
+            }
+        }
+        System.out.println("Autor não encontrado");
+    }
+
 }
