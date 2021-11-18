@@ -35,124 +35,128 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBAddAuthor = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jMenuBar = new javax.swing.JMenuBar();
+        Arquivo = new javax.swing.JMenu();
+        Sair = new javax.swing.JMenuItem();
+        Novo = new javax.swing.JMenu();
+        NovoAuthor = new javax.swing.JMenuItem();
+        Listar = new javax.swing.JMenu();
+        ListarAuthor = new javax.swing.JMenuItem();
+        Atualizar = new javax.swing.JMenu();
+        AtualizarAuthor = new javax.swing.JMenuItem();
+        Deletar = new javax.swing.JMenu();
+        DeletarAuthor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
-        jBAddAuthor.setText("Novo Autor");
-        jBAddAuthor.addActionListener(new java.awt.event.ActionListener() {
+        Arquivo.setText("Arquivo");
+
+        Sair.setText("Sair");
+        Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAddAuthorActionPerformed(evt);
+                SairActionPerformed(evt);
             }
         });
+        Arquivo.add(Sair);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Autores");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar.add(Arquivo);
 
-        jButton1.setText("Listar Autores");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Novo.setText("Novo");
+
+        NovoAuthor.setText("Autor");
+        NovoAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                NovoAuthorActionPerformed(evt);
             }
         });
+        Novo.add(NovoAuthor);
 
-        jButton2.setText("Atualizar Autor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar.add(Novo);
+
+        Listar.setText("Listar");
+
+        ListarAuthor.setText("Autor");
+        ListarAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ListarAuthorActionPerformed(evt);
             }
         });
+        Listar.add(ListarAuthor);
 
-        jButton3.setText("Deletar Autor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar.add(Listar);
+
+        Atualizar.setText("Atualizar");
+
+        AtualizarAuthor.setText("Autor");
+        AtualizarAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                AtualizarAuthorActionPerformed(evt);
             }
         });
+        Atualizar.add(AtualizarAuthor);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Outros");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar.add(Atualizar);
+
+        Deletar.setText("Deletar");
+
+        DeletarAuthor.setText("Autor");
+        DeletarAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletarAuthorActionPerformed(evt);
+            }
+        });
+        Deletar.add(DeletarAuthor);
+
+        jMenuBar.add(Deletar);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jBAddAuthor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap())
+            .addGap(0, 367, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAddAuthor)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(168, Short.MAX_VALUE))
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAddAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAddAuthorActionPerformed
+    private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_SairActionPerformed
+
+    private void NovoAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoAuthorActionPerformed
         FrmAuthor telaDepartamento = new
         FrmAuthor();
         telaDepartamento.setVisible(true);
         telaDepartamento.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jBAddAuthorActionPerformed
+    }//GEN-LAST:event_NovoAuthorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        FrmUpdateAuthor updateAuthor = new
-        FrmUpdateAuthor();
-        updateAuthor.setVisible(true);
-        updateAuthor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        FrmDeleteAuthor deeleteAuthor = new
-        FrmDeleteAuthor();
-        deeleteAuthor.setVisible(true);
-        deeleteAuthor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void ListarAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarAuthorActionPerformed
         FrmListAuthors listagemAutor = new
         FrmListAuthors();
         listagemAutor.setVisible(true);
         listagemAutor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ListarAuthorActionPerformed
+
+    private void AtualizarAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarAuthorActionPerformed
+        FrmUpdateAuthor updateAuthor = new
+        FrmUpdateAuthor();
+        updateAuthor.setVisible(true);
+        updateAuthor.setLocationRelativeTo(this);
+    }//GEN-LAST:event_AtualizarAuthorActionPerformed
+
+    private void DeletarAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletarAuthorActionPerformed
+        FrmDeleteAuthor deeleteAuthor = new
+        FrmDeleteAuthor();
+        deeleteAuthor.setVisible(true);
+        deeleteAuthor.setLocationRelativeTo(this);
+    }//GEN-LAST:event_DeletarAuthorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,11 +194,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAddAuthor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu Arquivo;
+    private javax.swing.JMenu Atualizar;
+    private javax.swing.JMenuItem AtualizarAuthor;
+    private javax.swing.JMenu Deletar;
+    private javax.swing.JMenuItem DeletarAuthor;
+    private javax.swing.JMenu Listar;
+    private javax.swing.JMenuItem ListarAuthor;
+    private javax.swing.JMenu Novo;
+    private javax.swing.JMenuItem NovoAuthor;
+    private javax.swing.JMenuItem Sair;
+    private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables
 }

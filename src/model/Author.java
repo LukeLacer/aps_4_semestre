@@ -26,7 +26,7 @@ public class Author {
     // ----------------------------------------------------------------------
     // Constructors
     // ----------------------------------------------------------------------
-
+    public Author() {}
     public Author(Integer authorID, String name, String fname) {
 
         boolean conditions = checkID(authorID) && checkName(name) && checkName(fname);
