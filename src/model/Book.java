@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.sound.sampled.SourceDataLine;
-
 //Created By Victor Hugo(VeK) on 01/11/2021
 //01/11/2021 - Building the class atributes 
 //10/11/2021 - Creating methods to check the atributes before creating the object
@@ -201,6 +199,18 @@ public class Book {
             System.out.println("Preço Inválido: Valor Muito Grande");
         }
         return isPriceOk;
+    }
+
+    // Removes book from arraylist
+    public void removeBook(String isbn) {
+        for (Book book : books) {
+            if (book.getISBN().equals(isbn)) {
+                books.remove(book);
+                return;
+            }
+        }
+
+        System.out.println("Livro não encontrado");
     }
 
     // Maybe this will check if the publisher exists

@@ -32,7 +32,7 @@ public class BooksAuthors {
         // this arraylist
         // If you have a better idea about how to store this in a better way, please
         // share
-        booksAuthors.add(new BooksAuthors(this.getIsbn(), this.getAuthorID(), this.getSeqNo(), true));
+        booksAuthors.add(new BooksAuthors(this.getISBN(), this.getAuthorID(), this.getSeqNo(), true));
     }
 
     public BooksAuthors(String isbn, Integer authorID, Integer seqNo, boolean flag) {
@@ -73,7 +73,7 @@ public class BooksAuthors {
     /**
      * @return the isbn
      */
-    public String getIsbn() {
+    public String getISBN() {
         return isbn;
     }
 
@@ -91,4 +91,38 @@ public class BooksAuthors {
         return seqNo;
     }
 
+    // ----------------------------------------------------------------------
+    // Functions
+    // ----------------------------------------------------------------------
+
+    // Checking the ISBN
+    public boolean isbnCheck(String isbn) {
+        boolean isISBNOk = true;
+        // Verifying the ISBN Length
+        if (isbn.length() == 0 || isbn.length() > 13) {
+            isISBNOk = false;
+            System.out.println("Tamanho do ISBN inválido");
+        }
+
+        // Verifying if the isbn is repeated
+        // checks if there is another equal isbn on books arraylist
+        for (BooksAuthors book : booksAuthors) { // iterating on book arraylist
+            if (book.getISBN().equals(isbn)) { // verifies if the isbn already exists on DB
+                isISBNOk = false;
+            }
+        }
+
+        return isISBNOk;
+    }
+
+    // Removes book from arraylist
+    public void removeBookAuthor(String isbn) {
+        for (BooksAuthors bookAuthor : booksAuthors) {
+            if (bookAuthor.getISBN().equals(isbn)) {
+                booksAuthors.remove(bookAuthor);
+                return;
+            }
+        }
+        System.out.println("LivroAutor não encontrado");
+    }
 }
