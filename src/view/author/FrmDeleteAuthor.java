@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.Author;
 
 /**
@@ -41,10 +43,10 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBNovo = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jTfName1 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,16 +78,37 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
             }
         });
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
-
         jLabel4.setText("Id");
 
+        jTfName1.setEditable(false);
         jTfName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTfName1ActionPerformed(evt);
             }
         });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome", "Nome Completo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,7 +118,7 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane3)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -109,7 +132,7 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTfName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,16 +151,15 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void listAuthors(){
-        DefaultListModel listModel = new DefaultListModel();
         List listAuthor = new ArrayList();
         listAuthor = ctrAuthor.carregarAuthors();
+        DefaultTableModel tableModelAuthors = (DefaultTableModel) jTable2.getModel();
         if (listAuthor != null && !listAuthor.isEmpty()) {
             Iterator i = listAuthor.iterator();
             while (i.hasNext()) {
                 author = (Author) i.next();
-                listModel.addElement("Nome: " + author.getFname() + " id:" + author.getAuthor_id());
+                tableModelAuthors.addRow(new Object[] {author.getAuthor_id(), author.getName(),author.getFname() });
             }
-            jList1.setModel(listModel);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhum Autor disponível para listar!!");
         }
@@ -157,6 +179,12 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
     private void jTfName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfName1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTfName1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        JTable source = (JTable)evt.getSource();
+        int row = source.rowAtPoint( evt.getPoint() );
+        jTfName1.setText(source.getModel().getValueAt(row, 0)+"");
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,10 +224,10 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBNovo;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTfName1;
     // End of variables declaration//GEN-END:variables
 }
