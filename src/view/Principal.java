@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import view.author.FrmListAuthors;
@@ -10,17 +5,17 @@ import view.author.FrmAuthor;
 import view.author.FrmUpdateAuthor;
 import dao.HibernateConfiguracao;
 import view.author.FrmDeleteAuthor;
+import view.book.FrmBook;
+import view.book.FrmDeleteBook;
+import view.book.FrmListBooks;
+import view.book.FrmUpdateBook;
 import view.publishers.FmrPublishers;
 import view.publishers.FrmListPulishers;
 import view.publishers.FmrUpdatePublishers;
 import view.publishers.FmrDeletePublishers;
 
-/**
- *
- * @author lucas
- */
 public class Principal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Principal
      */
@@ -39,24 +34,36 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar = new javax.swing.JMenuBar();
         Arquivo = new javax.swing.JMenu();
         Sair = new javax.swing.JMenuItem();
         Novo = new javax.swing.JMenu();
         NovoAuthor = new javax.swing.JMenuItem();
         NovoEditor = new javax.swing.JMenuItem();
+        NovoLivro = new javax.swing.JMenuItem();
         Listar = new javax.swing.JMenu();
         ListarAuthor = new javax.swing.JMenuItem();
         ListarEditor = new javax.swing.JMenuItem();
+        ListarLivro = new javax.swing.JMenuItem();
         Atualizar = new javax.swing.JMenu();
         AtualizarAuthor = new javax.swing.JMenuItem();
         AtualizarEditor = new javax.swing.JMenuItem();
+        AtualizarLivro = new javax.swing.JMenuItem();
         Deletar = new javax.swing.JMenu();
         DeletarAuthor = new javax.swing.JMenuItem();
         DeletarEditor = new javax.swing.JMenuItem();
+        DeletarLivro = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Arquivo.setText("Arquivo");
 
@@ -88,6 +95,19 @@ public class Principal extends javax.swing.JFrame {
         });
         Novo.add(NovoEditor);
 
+        NovoLivro.setText("Livro");
+        NovoLivro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NovoLivroMouseClicked(evt);
+            }
+        });
+        NovoLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoLivroActionPerformed(evt);
+            }
+        });
+        Novo.add(NovoLivro);
+
         jMenuBar.add(Novo);
 
         Listar.setText("Listar");
@@ -107,6 +127,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Listar.add(ListarEditor);
+
+        ListarLivro.setText("Livro");
+        ListarLivro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListarLivroMouseClicked(evt);
+            }
+        });
+        ListarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarLivroActionPerformed(evt);
+            }
+        });
+        Listar.add(ListarLivro);
 
         jMenuBar.add(Listar);
 
@@ -128,6 +161,19 @@ public class Principal extends javax.swing.JFrame {
         });
         Atualizar.add(AtualizarEditor);
 
+        AtualizarLivro.setText("Livro");
+        AtualizarLivro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AtualizarLivroMouseClicked(evt);
+            }
+        });
+        AtualizarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarLivroActionPerformed(evt);
+            }
+        });
+        Atualizar.add(AtualizarLivro);
+
         jMenuBar.add(Atualizar);
 
         Deletar.setText("Deletar");
@@ -148,6 +194,19 @@ public class Principal extends javax.swing.JFrame {
         });
         Deletar.add(DeletarEditor);
 
+        DeletarLivro.setText("Livro");
+        DeletarLivro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeletarLivroMouseClicked(evt);
+            }
+        });
+        DeletarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletarLivroActionPerformed(evt);
+            }
+        });
+        Deletar.add(DeletarLivro);
+
         jMenuBar.add(Deletar);
 
         setJMenuBar(jMenuBar);
@@ -156,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +257,9 @@ public class Principal extends javax.swing.JFrame {
         deeleteAuthor.setLocationRelativeTo(this);
     }//GEN-LAST:event_DeletarAuthorActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }//GEN-LAST:event_formWindowOpened
+    
     private void NovoEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoEditorActionPerformed
         // TODO add your handling code here:
         FmrPublishers createPublisher = new
@@ -229,6 +291,46 @@ public class Principal extends javax.swing.JFrame {
         deletePublisher.setVisible(true);
         deletePublisher.setLocationRelativeTo(this);
     }//GEN-LAST:event_DeletarEditorActionPerformed
+
+    private void NovoLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NovoLivroMouseClicked
+    }//GEN-LAST:event_NovoLivroMouseClicked
+
+    private void ListarLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListarLivroMouseClicked
+    }//GEN-LAST:event_ListarLivroMouseClicked
+
+    private void AtualizarLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtualizarLivroMouseClicked
+    }//GEN-LAST:event_AtualizarLivroMouseClicked
+
+    private void DeletarLivroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeletarLivroMouseClicked
+    }//GEN-LAST:event_DeletarLivroMouseClicked
+
+    private void NovoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoLivroActionPerformed
+        FrmBook newBook = new
+        FrmBook();
+        newBook.setVisible(true);
+        newBook.setLocationRelativeTo(this);
+    }//GEN-LAST:event_NovoLivroActionPerformed
+
+    private void ListarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarLivroActionPerformed
+        FrmListBooks listBook = new
+        FrmListBooks();
+        listBook.setVisible(true);
+        listBook.setLocationRelativeTo(this);
+    }//GEN-LAST:event_ListarLivroActionPerformed
+
+    private void AtualizarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarLivroActionPerformed
+        FrmUpdateBook updateBook = new
+        FrmUpdateBook();
+        updateBook.setVisible(true);
+        updateBook.setLocationRelativeTo(this);
+    }//GEN-LAST:event_AtualizarLivroActionPerformed
+
+    private void DeletarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletarLivroActionPerformed
+        FrmDeleteBook deleteBook = new
+        FrmDeleteBook();
+        deleteBook.setVisible(true);
+        deleteBook.setLocationRelativeTo(this);
+    }//GEN-LAST:event_DeletarLivroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,16 +372,21 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Atualizar;
     private javax.swing.JMenuItem AtualizarAuthor;
     private javax.swing.JMenuItem AtualizarEditor;
+    private javax.swing.JMenuItem AtualizarLivro;
     private javax.swing.JMenu Deletar;
     private javax.swing.JMenuItem DeletarAuthor;
     private javax.swing.JMenuItem DeletarEditor;
+    private javax.swing.JMenuItem DeletarLivro;
     private javax.swing.JMenu Listar;
     private javax.swing.JMenuItem ListarAuthor;
     private javax.swing.JMenuItem ListarEditor;
+    private javax.swing.JMenuItem ListarLivro;
     private javax.swing.JMenu Novo;
     private javax.swing.JMenuItem NovoAuthor;
     private javax.swing.JMenuItem NovoEditor;
+    private javax.swing.JMenuItem NovoLivro;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

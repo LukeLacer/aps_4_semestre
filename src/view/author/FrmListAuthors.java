@@ -113,6 +113,7 @@ public class FrmListAuthors extends javax.swing.JFrame {
         if (listAuthor != null && !listAuthor.isEmpty()) {
             Iterator i = listAuthor.iterator();
             DefaultTableModel tableModelAuthors = (DefaultTableModel) jTable1.getModel();
+            tableModelAuthors.setRowCount(0);
             while (i.hasNext()) {
                 author = (Author) i.next();
                 tableModelAuthors.addRow(new Object[] {author.getAuthor_id(), author.getName(),author.getFname() });

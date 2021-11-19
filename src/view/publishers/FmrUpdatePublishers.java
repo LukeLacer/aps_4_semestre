@@ -205,7 +205,7 @@ public class FmrUpdatePublishers extends javax.swing.JFrame {
         publisher.setPublisherID(Integer.parseInt(publisher_id.getText()));
         publisher.setName(name.getText());
         if(!"".equals(name.getText().trim()) || !"".equals(url.getText().trim())){
-            if (ctrPublisher.alterarPulisher(publisher) == 1) {
+            if (ctrPublisher.alterarPublisher(publisher) == 1) {
                 this.listPublisher();
                 JOptionPane.showMessageDialog(null, "Editor  atualizado com sucesso!!");
             } else {
@@ -224,7 +224,7 @@ public class FmrUpdatePublishers extends javax.swing.JFrame {
     
     private void listPublisher(){
         List listPublisher = new ArrayList();
-        listPublisher = ctrPublisher.carregarPulishers();
+        listPublisher = ctrPublisher.carregarPublishers();
         if (listPublisher != null && !listPublisher.isEmpty()) {
             Iterator i = listPublisher.iterator();
             DefaultTableModel tableModelPublisher = (DefaultTableModel) jTable1.getModel();

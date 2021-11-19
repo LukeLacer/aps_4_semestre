@@ -154,6 +154,7 @@ public class FrmDeleteAuthor extends javax.swing.JFrame {
         List listAuthor = new ArrayList();
         listAuthor = ctrAuthor.carregarAuthors();
         DefaultTableModel tableModelAuthors = (DefaultTableModel) jTable2.getModel();
+        tableModelAuthors.setRowCount(0);
         if (listAuthor != null && !listAuthor.isEmpty()) {
             Iterator i = listAuthor.iterator();
             while (i.hasNext()) {

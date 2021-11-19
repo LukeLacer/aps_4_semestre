@@ -5,44 +5,43 @@ import java.util.List;
 import model.Publisher;
 import org.hibernate.HibernateException;
 
-/**
- *
- * @author Gabriel Freitas-PC
- */
 public class CtrPublishers {
-    DaoPublishers acessohibernatepublishers;
+    DaoPublishers acessohibernatepublisher;
     
     public CtrPublishers() {
-        acessohibernatepublishers = new DaoPublishers();
+        acessohibernatepublisher = new DaoPublishers();
     }
+    
     public int gravarPublisher(Publisher publisher) {
         try {
-            acessohibernatepublishers.gravar(publisher);
+            acessohibernatepublisher.gravar(publisher);
             return 1;
         } catch (HibernateException e) {
             e.printStackTrace();
             return 2;
         }
     }
-    public List carregarPulishers() {
+    
+    public List carregarPublishers() {
         try {
-            return acessohibernatepublishers.carregarTudoOrdenado(Publisher.class, "name");
+            return acessohibernatepublisher.carregarTudoOrdenado(Publisher.class, "name");
         } catch (HibernateException e) {
             return null;
         }
     }
-    public int excluirPulisher(Publisher publisher) {
+    
+    public int excluirPublisher(Publisher publisher) {
         try {
-            acessohibernatepublishers.excluir(publisher);
+            acessohibernatepublisher.excluir(publisher);
             return 1;
         } catch (HibernateException e) {
             e.printStackTrace();
             return 2;
         }
     }
-    public int alterarPulisher(Publisher publisher) {
+    public int alterarPublisher(Publisher publisher) {
         try {
-            acessohibernatepublishers.alterar(publisher);
+            acessohibernatepublisher.alterar(publisher);
             return 1;
         } catch (HibernateException e) {
             e.printStackTrace();

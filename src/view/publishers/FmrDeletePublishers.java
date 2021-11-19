@@ -153,7 +153,7 @@ public class FmrDeletePublishers extends javax.swing.JFrame {
         publisher = new Publisher();
         publisher.setPublisherID(Integer.parseInt(publisher_id.getText()));
         if(!"".equals(publisher_id.getText().trim()) || !publisher.getPublisherID().equals(publisher_id.getText().trim())){
-            if (ctrPublisher.excluirPulisher(publisher) == 1) {
+            if (ctrPublisher.excluirPublisher(publisher) == 1) {
                 this.listPublisher();
                 JOptionPane.showMessageDialog(null, "Editor  deletado com sucesso!!");
             } else {
@@ -173,7 +173,7 @@ public class FmrDeletePublishers extends javax.swing.JFrame {
     
     private void listPublisher(){
         List listPublisher = new ArrayList();
-        listPublisher = ctrPublisher.carregarPulishers();
+        listPublisher = ctrPublisher.carregarPublishers();
         if (listPublisher != null && !listPublisher.isEmpty()) {
             Iterator i = listPublisher.iterator();
             DefaultTableModel tableModelPublisher = (DefaultTableModel) jTable1.getModel();

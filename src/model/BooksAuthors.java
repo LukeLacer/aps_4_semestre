@@ -1,50 +1,29 @@
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 
-//Created By Victor Hugo(VeK) on 10/11/2021
-//10/11/2021 - Building the Class
-//Classe de Autores de Livros (Auxiliar) - Books Author Class
-public class BooksAuthors {
+@Entity
+@IdClass(BooksAuthorsPk.class)
+public class BooksAuthors implements Serializable {
+    @Id
+    private String isbn;
+    @Id
+    private Integer author_id;
+    
+    private Integer seq_no;
 
-    // ----------------------------------------------------------------------
-    // Atributes
-    // ----------------------------------------------------------------------
-
-    private String isbn; // Char(13) on DB
-    private Integer authorID;
-    private Integer seqNo;
-    // VeK: This Arraylist is used to store all the book authors created inside this
-    // arraylist
-    // If you have a better idea about how to store this in a better way, please
-    // share
-    public static ArrayList<BooksAuthors> booksAuthors = new ArrayList<BooksAuthors>();
-
-    // ----------------------------------------------------------------------
-    // Constructors
-    // ----------------------------------------------------------------------
+    public BooksAuthors() {
+    }
 
     public BooksAuthors(String isbn, Integer authorID, Integer seqNo) {
+        this.author_id = authorID;
         this.isbn = isbn;
-        this.authorID = authorID;
-        this.seqNo = seqNo;
-        // VeK: This Arraylist is used to store all the books authors created inside
-        // this arraylist
-        // If you have a better idea about how to store this in a better way, please
-        // share
-        booksAuthors.add(new BooksAuthors(this.getISBN(), this.getAuthorID(), this.getSeqNo(), true));
+        this.seq_no = seqNo;
     }
-
-    public BooksAuthors(String isbn, Integer authorID, Integer seqNo, boolean flag) {
-        this.isbn = isbn;
-        this.authorID = authorID;
-        this.seqNo = seqNo;
-    }
-
-    // ----------------------------------------------------------------------
-    // Setters
-    // ----------------------------------------------------------------------
-
+    
     /**
      * @param isbn the isbn to set
      */
@@ -56,73 +35,35 @@ public class BooksAuthors {
      * @param authorID the authorID to set
      */
     public void setAuthorID(Integer authorID) {
-        this.authorID = authorID;
+        this.author_id = authorID;
     }
 
     /**
      * @param seqNo the seqNo to set
      */
     public void setSeqNo(Integer seqNo) {
-        this.seqNo = seqNo;
+        this.seq_no = seqNo;
     }
-
-    // ----------------------------------------------------------------------
-    // Getters
-    // ----------------------------------------------------------------------
 
     /**
      * @return the isbn
      */
     public String getISBN() {
-        return isbn;
+        return this.isbn;
     }
 
     /**
      * @return the authorID
      */
     public Integer getAuthorID() {
-        return authorID;
+        return this.author_id;
     }
 
     /**
      * @return the seqNo
      */
     public Integer getSeqNo() {
-        return seqNo;
+        return seq_no;
     }
 
-    // ----------------------------------------------------------------------
-    // Functions
-    // ----------------------------------------------------------------------
-
-    // Checking the ISBN
-    public boolean isbnCheck(String isbn) {
-        boolean isISBNOk = true;
-        // Verifying the ISBN Length
-        if (isbn.length() == 0 || isbn.length() > 13) {
-            isISBNOk = false;
-            System.out.println("Tamanho do ISBN inválido");
-        }
-
-        // Verifying if the isbn is repeated
-        // checks if there is another equal isbn on books arraylist
-        for (BooksAuthors book : booksAuthors) { // iterating on book arraylist
-            if (book.getISBN().equals(isbn)) { // verifies if the isbn already exists on DB
-                isISBNOk = false;
-            }
-        }
-
-        return isISBNOk;
-    }
-
-    // Removes book from arraylist
-    public void removeBookAuthor(String isbn) {
-        for (BooksAuthors bookAuthor : booksAuthors) {
-            if (bookAuthor.getISBN().equals(isbn)) {
-                booksAuthors.remove(bookAuthor);
-                return;
-            }
-        }
-        System.out.println("LivroAutor não encontrado");
-    }
 }

@@ -27,6 +27,13 @@ public class CtrAuthors {
             return null;
         }
     }
+    public Object carregarAuthor(int id) {
+        try {
+            return acessohibernateauthor.carregarUm(id, Author.class);
+        } catch (HibernateException e) {
+            return null;
+        }
+    }
     public int excluirAuthor(Author author) {
         try {
             acessohibernateauthor.excluir(author);
