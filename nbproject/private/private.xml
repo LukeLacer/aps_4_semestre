@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Victor/Documents/UNIP/4%20Semestre/APS/aps_4_semestre/src/model/Author.java</file>
-            <file>file:/C:/Users/Victor/Documents/UNIP/4%20Semestre/APS/aps_4_semestre/test/test/ClassTest.java</file>
-            <file>file:/C:/Users/Victor/Documents/UNIP/4%20Semestre/APS/aps_4_semestre/src/model/BooksAuthors.java</file>
-            <file>file:/C:/Users/Victor/Documents/UNIP/4%20Semestre/APS/aps_4_semestre/src/model/Book.java</file>
-            <file>file:/C:/Users/Victor/Documents/UNIP/4%20Semestre/APS/aps_4_semestre/src/model/Publisher.java</file>
+            <file>file:/D:/Faculdade/4ºsemestre/aps/aps_4_semestre/src/view/publishers/FmrUpdatePublishers.java</file>
+            <file>file:/D:/Faculdade/4ºsemestre/aps/aps_4_semestre/src/view/Principal.java</file>
+            <file>file:/D:/Faculdade/4ºsemestre/aps/aps_4_semestre/src/view/author/FrmAuthor.java</file>
+            <file>file:/D:/Faculdade/4ºsemestre/aps/aps_4_semestre/src/view/author/FrmDeleteAuthor.java</file>
         </group>
     </open-files>
 </project-private>
