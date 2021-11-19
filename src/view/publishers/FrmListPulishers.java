@@ -106,7 +106,7 @@ public class FrmListPulishers extends javax.swing.JFrame {
         publisher = new Publisher();
         
         List listPublisher = new ArrayList();
-        listPublisher = ctrPublisher.carregarPulishers();
+        listPublisher = ctrPublisher.carregarPublishers();
         if (listPublisher != null && !listPublisher.isEmpty()) {
             Iterator i = listPublisher.iterator();
             DefaultTableModel tableModelPublisher = (DefaultTableModel) jTable1.getModel();

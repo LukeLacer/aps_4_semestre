@@ -11,6 +11,7 @@ public class CtrPublishers {
     public CtrPublishers() {
         acessohibernatepublisher = new DaoPublishers();
     }
+    
     public int gravarPublisher(Publisher publisher) {
         try {
             acessohibernatepublisher.gravar(publisher);
@@ -20,6 +21,7 @@ public class CtrPublishers {
             return 2;
         }
     }
+    
     public List carregarPublishers() {
         try {
             return acessohibernatepublisher.carregarTudoOrdenado(Publisher.class, "name");
@@ -27,6 +29,7 @@ public class CtrPublishers {
             return null;
         }
     }
+    
     public int excluirPublisher(Publisher publisher) {
         try {
             acessohibernatepublisher.excluir(publisher);
