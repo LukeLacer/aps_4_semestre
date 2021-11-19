@@ -45,5 +45,4 @@ public class CtrPublishers {
             return 2;
         }
     }
-
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,8 @@ public class Publisher implements Serializable {
     /**
      * @param publisherID the publisherID to set
      */
-    public void setPublisherID(Integer publisher_id) {
-        this.publisher_id = publisher_id;
+    public void setPublisherID(Integer publisherID) {
+        this.publisher_id = publisherID;
     }
 
     /**
