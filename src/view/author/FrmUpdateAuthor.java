@@ -178,6 +178,7 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
     
     private void listAuthors(){
         DefaultTableModel tableModelAuthors = (DefaultTableModel) jTable1.getModel();
+        tableModelAuthors.setRowCount(0);
         List listAuthor = new ArrayList();
         listAuthor = ctrAuthor.carregarAuthors();
         if (listAuthor != null && !listAuthor.isEmpty()) {
