@@ -2,6 +2,7 @@ package dao;
 
 import model.Author;
 import model.Book;
+import model.BooksAuthors;
 import model.Publisher;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,6 +25,7 @@ public class HibernateConfiguracao {
         configuration.addAnnotatedClass(Author.class);
         configuration.addAnnotatedClass(Book.class);
         configuration.addAnnotatedClass(Publisher.class);
+        configuration.addAnnotatedClass(BooksAuthors.class);
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().
         applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);

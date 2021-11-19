@@ -5,18 +5,29 @@
  */
 package view.book;
 
+import control.CtrAuthors;
 import control.CtrBooks;
+import control.CtrBooksAuthors;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.Author;
 import model.Book;
+import model.BooksAuthors;
 
 public class FrmUpdateBook extends javax.swing.JFrame {
     CtrBooks ctrBook;
     Book book;
+    
+    CtrAuthors ctrAuthor;
+    Author author;
+    
+    CtrBooksAuthors ctrBooksAuthors;
+    BooksAuthors booksAuthors;
+    private int IdSelectedAuthor;
     /**
      * Creates new form FrmUpdateBook
      */
@@ -44,8 +55,20 @@ public class FrmUpdateBook extends javax.swing.JFrame {
         jTfPublisherId = new javax.swing.JTextField();
         jTfPrice = new javax.swing.JTextField();
         jBUpdate = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jBNewAuthor = new javax.swing.JButton();
+        jBDeleteAuthor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -68,6 +91,7 @@ public class FrmUpdateBook extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -98,6 +122,57 @@ public class FrmUpdateBook extends javax.swing.JFrame {
             }
         });
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setMinWidth(50);
+            jTable2.getColumnModel().getColumn(0).setPreferredWidth(50);
+            jTable2.getColumnModel().getColumn(0).setMaxWidth(100);
+        }
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Autores");
+
+        jBNewAuthor.setText("Novo Autor");
+        jBNewAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNewAuthorActionPerformed(evt);
+            }
+        });
+
+        jBDeleteAuthor.setText("Excluir Autor");
+        jBDeleteAuthor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBDeleteAuthorMouseClicked(evt);
+            }
+        });
+        jBDeleteAuthor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDeleteAuthorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,26 +180,40 @@ public class FrmUpdateBook extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblISBN)
-                            .addGap(28, 28, 28)
-                            .addComponent(jTfISBN, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblPublisherId)
-                                .addComponent(lbTitle)
-                                .addComponent(lblPrice))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTfPrice)
-                                .addComponent(jTfTitle)
-                                .addComponent(jTfPublisherId))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBUpdate)))
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel1)
+                        .addContainerGap(215, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jBUpdate))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblISBN)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(jTfISBN, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPublisherId)
+                                            .addComponent(lbTitle)
+                                            .addComponent(lblPrice))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTfPrice)
+                                            .addComponent(jTfTitle)
+                                            .addComponent(jTfPublisherId))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jBDeleteAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBNewAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +236,18 @@ public class FrmUpdateBook extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrice)
                     .addComponent(jTfPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBNewAuthor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBDeleteAuthor)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBUpdate)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,6 +258,12 @@ public class FrmUpdateBook extends javax.swing.JFrame {
     }//GEN-LAST:event_jTfTitleActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ctrBooksAuthors = new CtrBooksAuthors();
+        booksAuthors = new BooksAuthors();
+        
+        ctrAuthor = new CtrAuthors();
+        author = new Author();
+        
         ctrBook = new CtrBooks();
         book = new Book();
         this.listBooks();
@@ -169,6 +273,7 @@ public class FrmUpdateBook extends javax.swing.JFrame {
         book = new Book();
         book.setISBN(jTfISBN.getText());
         book.setTitle(jTfTitle.getText());
+        book.setPrice(Double.parseDouble(jTfPrice.getText()));
         book.setPublisherID(Integer.parseInt(jTfPublisherId.getText()));        
         if (ctrBook.alterarBook(book) == 1) {
             this.listBooks();
@@ -181,11 +286,47 @@ public class FrmUpdateBook extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         JTable source = (JTable)evt.getSource();
         int row = source.rowAtPoint( evt.getPoint() );
+        this.listBooksAuthors(source.getModel().getValueAt(row, 0)+"");
         jTfISBN.setText(source.getModel().getValueAt(row, 0)+"");
         jTfTitle.setText(source.getModel().getValueAt(row, 1)+"");
         jTfPublisherId.setText(source.getModel().getValueAt(row, 2)+"");
         jTfPrice.setText(source.getModel().getValueAt(row, 3)+"");
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jBNewAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNewAuthorActionPerformed
+        FrmNewBookAuthor novoLivroAutor = new FrmNewBookAuthor();
+        novoLivroAutor.jTfISBN.setText(jTfISBN.getText());
+        novoLivroAutor.setVisible(true);
+        novoLivroAutor.setLocationRelativeTo(this);
+    }//GEN-LAST:event_jBNewAuthorActionPerformed
+
+    private void jBDeleteAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteAuthorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBDeleteAuthorActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        JTable source = (JTable)evt.getSource();
+        int row = source.rowAtPoint( evt.getPoint() );
+        this.IdSelectedAuthor = Integer.parseInt(source.getModel().getValueAt(row, 0)+"");
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jBDeleteAuthorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBDeleteAuthorMouseClicked
+        booksAuthors = new BooksAuthors();
+        booksAuthors.setAuthorID(this.IdSelectedAuthor);
+        booksAuthors.setIsbn(jTfISBN.getText());
+        if (ctrBooksAuthors.excluirBooksAuthor(booksAuthors) == 1) {
+            this.listBooksAuthors(jTfISBN.getText());
+            JOptionPane.showMessageDialog(null, "Autor  retirado do livro com sucesso!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível retirar o autor do livro");
+        }
+    }//GEN-LAST:event_jBDeleteAuthorMouseClicked
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        if(jTfISBN.getText() != "") {
+            listBooksAuthors(jTfISBN.getText());
+        }
+    }//GEN-LAST:event_formWindowGainedFocus
 
     private void listBooks(){
         DefaultTableModel tableModelBooks = (DefaultTableModel) jTable1.getModel();
@@ -199,6 +340,23 @@ public class FrmUpdateBook extends javax.swing.JFrame {
                 tableModelBooks.addRow(new Object[] {book.getISBN(), book.getTitle(),book.getPublisherID(),book.getPrice() });
             }
         }else{
+            JOptionPane.showMessageDialog(null, "Nenhum Autor disponível para listar!!");
+        }
+    }
+    
+    public void listBooksAuthors(String isbn){
+        DefaultTableModel tableModelBooksAuthors = (DefaultTableModel) jTable2.getModel();
+        tableModelBooksAuthors.setRowCount(0);
+        List listBookAuthor = new ArrayList();
+        listBookAuthor = ctrBooksAuthors.carregarBookAuthors(isbn);
+        if (listBookAuthor != null && !listBookAuthor.isEmpty()) {
+            Iterator i = listBookAuthor.iterator();
+            while (i.hasNext()) {
+                booksAuthors = (BooksAuthors) i.next();
+                author = (Author) ctrAuthor.carregarAuthor(booksAuthors.getAuthorID());
+                tableModelBooksAuthors.addRow(new Object[] {booksAuthors.getAuthorID(), author.getFname()});
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Nenhum Autor disponível para listar!!");
         }
     }
@@ -239,9 +397,14 @@ public class FrmUpdateBook extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBDeleteAuthor;
+    private javax.swing.JButton jBNewAuthor;
     private javax.swing.JButton jBUpdate;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTfISBN;
     private javax.swing.JTextField jTfPrice;
     private javax.swing.JTextField jTfPublisherId;

@@ -139,9 +139,9 @@ public class FrmDeleteBook extends javax.swing.JFrame {
         book.setISBN(jTfISBN.getText());      
         if (ctrBook.excluirBook(book) == 1) {
             this.listBooks();
-            JOptionPane.showMessageDialog(null, "Autor  deletado com sucesso!!");
+            JOptionPane.showMessageDialog(null, "Livro  deletado com sucesso!!");
         } else {
-            JOptionPane.showMessageDialog(null, "Não foi possível deletar o autor");
+            JOptionPane.showMessageDialog(null, "Não foi possível deletar o livro");
         }
     }//GEN-LAST:event_jBDeleteMouseClicked
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import view.author.FrmListAuthors;
@@ -11,12 +6,8 @@ import view.author.FrmUpdateAuthor;
 import dao.HibernateConfiguracao;
 import view.author.FrmDeleteAuthor;
 
-/**
- *
- * @author lucas
- */
 public class Principal extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Principal
      */
@@ -49,6 +40,11 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         Arquivo.setText("Arquivo");
 
@@ -116,7 +112,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,6 +153,9 @@ public class Principal extends javax.swing.JFrame {
         deeleteAuthor.setVisible(true);
         deeleteAuthor.setLocationRelativeTo(this);
     }//GEN-LAST:event_DeletarAuthorActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
