@@ -1,33 +1,37 @@
 package model;
 
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import javax.swing.text.html.HTMLDocument.RunElement;
 
-//Created By Victor Hugo(VeK) on 10/11/2021
-//10/11/2021 - Building the Class
-//Classe de Editoras - Publisher Class
+@Entity
+@Table(name = "Publishers")
 public class Publisher {
 
     // ----------------------------------------------------------------------
     // Atributes
     // ----------------------------------------------------------------------
-
-    private Integer publisherID; // INT type on DB
+    @Id
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer publisher_id; // INT type on DB
     private String name; // Char(30) on DB
     private String url; // Char(80) on DB
-    // VeK: This Arraylist is used to store all the publishers created inside this
-    // arraylist
-    // If you have a better idea about how to store this in a better way, please
-    // share
     public static ArrayList<Publisher> publishers = new ArrayList<Publisher>();
 
     // ----------------------------------------------------------------------
     // Constructors
     // ----------------------------------------------------------------------
-
+    public Publisher() {}
+    
     public Publisher(Integer publisherID, String name, String url) {
-        this.publisherID = publisherID;
+        this.publisher_id = publisherID;
         this.name = name;
         this.url = url;
         // Adding the same object values to arraylist
@@ -36,7 +40,7 @@ public class Publisher {
 
     // Private constructor used to insert objects on 'publishers' arraylist
     public Publisher(Integer publisherID, String name, String url, boolean flag) {
-        this.publisherID = publisherID;
+        this.publisher_id = publisherID;
         this.name = name;
         this.url = url;
     }
@@ -49,7 +53,7 @@ public class Publisher {
      * @param publisherID the publisherID to set
      */
     public void setPublisherID(Integer publisherID) {
-        this.publisherID = publisherID;
+        this.publisher_id = publisherID;
     }
 
     /**
@@ -74,7 +78,7 @@ public class Publisher {
      * @return the publisherID
      */
     public Integer getPublisherID() {
-        return publisherID;
+        return publisher_id;
     }
 
     /**

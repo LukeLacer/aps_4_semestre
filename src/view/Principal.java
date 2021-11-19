@@ -10,6 +10,10 @@ import view.author.FrmAuthor;
 import view.author.FrmUpdateAuthor;
 import dao.HibernateConfiguracao;
 import view.author.FrmDeleteAuthor;
+import view.publishers.FmrPublishers;
+import view.publishers.FrmListPulishers;
+import view.publishers.FmrUpdatePublishers;
+import view.publishers.FmrDeletePublishers;
 
 /**
  *
@@ -35,23 +39,21 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBAddAuthor = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         Arquivo = new javax.swing.JMenu();
         Sair = new javax.swing.JMenuItem();
         Novo = new javax.swing.JMenu();
         NovoAuthor = new javax.swing.JMenuItem();
+        NovoEditor = new javax.swing.JMenuItem();
         Listar = new javax.swing.JMenu();
         ListarAuthor = new javax.swing.JMenuItem();
+        ListarEditor = new javax.swing.JMenuItem();
         Atualizar = new javax.swing.JMenu();
         AtualizarAuthor = new javax.swing.JMenuItem();
+        AtualizarEditor = new javax.swing.JMenuItem();
         Deletar = new javax.swing.JMenu();
         DeletarAuthor = new javax.swing.JMenuItem();
+        DeletarEditor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -78,6 +80,14 @@ public class Principal extends javax.swing.JFrame {
         });
         Novo.add(NovoAuthor);
 
+        NovoEditor.setText("Editor");
+        NovoEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NovoEditorActionPerformed(evt);
+            }
+        });
+        Novo.add(NovoEditor);
+
         jMenuBar.add(Novo);
 
         Listar.setText("Listar");
@@ -89,6 +99,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         Listar.add(ListarAuthor);
+
+        ListarEditor.setText("Editor");
+        ListarEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarEditorActionPerformed(evt);
+            }
+        });
+        Listar.add(ListarEditor);
 
         jMenuBar.add(Listar);
 
@@ -102,6 +120,14 @@ public class Principal extends javax.swing.JFrame {
         });
         Atualizar.add(AtualizarAuthor);
 
+        AtualizarEditor.setText("Editor");
+        AtualizarEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarEditorActionPerformed(evt);
+            }
+        });
+        Atualizar.add(AtualizarEditor);
+
         jMenuBar.add(Atualizar);
 
         Deletar.setText("Deletar");
@@ -114,38 +140,17 @@ public class Principal extends javax.swing.JFrame {
         });
         Deletar.add(DeletarAuthor);
 
+        DeletarEditor.setText("Editor");
+        DeletarEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeletarEditorActionPerformed(evt);
+            }
+        });
+        Deletar.add(DeletarEditor);
+
         jMenuBar.add(Deletar);
 
         setJMenuBar(jMenuBar);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Autores");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jButton1.setText("Listar Autores");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Atualizar Autor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Deletar Autor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Outros");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -193,29 +198,37 @@ public class Principal extends javax.swing.JFrame {
         deeleteAuthor.setLocationRelativeTo(this);
     }//GEN-LAST:event_DeletarAuthorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void NovoEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoEditorActionPerformed
         // TODO add your handling code here:
-        FrmUpdateAuthor updateAuthor = new
-        FrmUpdateAuthor();
-        updateAuthor.setVisible(true);
-        updateAuthor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton2ActionPerformed
+        FmrPublishers createPublisher = new
+        FmrPublishers();
+        createPublisher.setVisible(true);
+        createPublisher.setLocationRelativeTo(this);
+    }//GEN-LAST:event_NovoEditorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ListarEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarEditorActionPerformed
         // TODO add your handling code here:
-        FrmDeleteAuthor deeleteAuthor = new
-        FrmDeleteAuthor();
-        deeleteAuthor.setVisible(true);
-        deeleteAuthor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        FrmListPulishers listPublisher = new
+        FrmListPulishers();
+        listPublisher.setVisible(true);
+        listPublisher.setLocationRelativeTo(this);
+    }//GEN-LAST:event_ListarEditorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AtualizarEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarEditorActionPerformed
         // TODO add your handling code here:
-        FrmListAuthors listagemAutor = new
-        FrmListAuthors();
-        listagemAutor.setVisible(true);
-        listagemAutor.setLocationRelativeTo(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        FmrUpdatePublishers updatePublisher = new
+        FmrUpdatePublishers();
+        updatePublisher.setVisible(true);
+        updatePublisher.setLocationRelativeTo(this);
+    }//GEN-LAST:event_AtualizarEditorActionPerformed
+
+    private void DeletarEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletarEditorActionPerformed
+        // TODO add your handling code here:
+        FmrDeletePublishers deletePublisher = new
+        FmrDeletePublishers();
+        deletePublisher.setVisible(true);
+        deletePublisher.setLocationRelativeTo(this);
+    }//GEN-LAST:event_DeletarEditorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,21 +266,19 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAddAuthor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu Arquivo;
     private javax.swing.JMenu Atualizar;
     private javax.swing.JMenuItem AtualizarAuthor;
+    private javax.swing.JMenuItem AtualizarEditor;
     private javax.swing.JMenu Deletar;
     private javax.swing.JMenuItem DeletarAuthor;
+    private javax.swing.JMenuItem DeletarEditor;
     private javax.swing.JMenu Listar;
     private javax.swing.JMenuItem ListarAuthor;
+    private javax.swing.JMenuItem ListarEditor;
     private javax.swing.JMenu Novo;
     private javax.swing.JMenuItem NovoAuthor;
+    private javax.swing.JMenuItem NovoEditor;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables

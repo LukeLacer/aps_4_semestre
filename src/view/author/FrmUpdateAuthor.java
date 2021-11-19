@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import model.Author;
 
 /**
@@ -43,10 +45,10 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
         jTfName = new javax.swing.JTextField();
         jTfFullName = new javax.swing.JTextField();
         jBNovo = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         jTfName1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Atualizar Autor");
@@ -81,16 +83,37 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
             }
         });
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
-
         jLabel4.setText("Id");
 
+        jTfName1.setEditable(false);
         jTfName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTfName1ActionPerformed(evt);
             }
         });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome", "Nome Completo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,7 +122,7 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,14 +138,14 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTfName1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfName))))
+                            .addComponent(jTfName, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -154,16 +177,15 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
     
     private void listAuthors(){
-        DefaultListModel listModel = new DefaultListModel();
-        List listDepartamento = new ArrayList();
-        listDepartamento = ctrAuthor.carregarAuthors();
-        if (listDepartamento != null && !listDepartamento.isEmpty()) {
-            Iterator i = listDepartamento.iterator();
+        DefaultTableModel tableModelAuthors = (DefaultTableModel) jTable1.getModel();
+        List listAuthor = new ArrayList();
+        listAuthor = ctrAuthor.carregarAuthors();
+        if (listAuthor != null && !listAuthor.isEmpty()) {
+            Iterator i = listAuthor.iterator();
             while (i.hasNext()) {
                 author = (Author) i.next();
-            listModel.addElement("Nome: " + author.getFname() + " id:" + author.getAuthor_id());
+                tableModelAuthors.addRow(new Object[] {author.getAuthor_id(), author.getName(),author.getFname() });
             }
-            jList1.setModel(listModel);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhum Autor disponível para listar!!");
         }
@@ -189,6 +211,14 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
     private void jTfFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTfFullNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTfFullNameActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        JTable source = (JTable)evt.getSource();
+        int row = source.rowAtPoint( evt.getPoint() );
+        jTfName1.setText(source.getModel().getValueAt(row, 0)+"");
+        jTfName.setText(source.getModel().getValueAt(row, 1)+"");
+        jTfFullName.setText(source.getModel().getValueAt(row, 2)+"");
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -230,8 +260,8 @@ public class FrmUpdateAuthor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTfFullName;
     private javax.swing.JTextField jTfName;
     private javax.swing.JTextField jTfName1;

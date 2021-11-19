@@ -118,7 +118,7 @@ public class FrmAuthor extends javax.swing.JFrame {
             author.setName(jTfName.getText());
             author.setFname(jTfFullName.getText());        
             if (ctrAuthor.gravarAuthor(author) == 1) {
-            JOptionPane.showMessageDialog(null, "Salvo no banco");
+            JOptionPane.showMessageDialog(null, "Autor criado com sucesso");
             } else {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar");
             }

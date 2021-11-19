@@ -1,20 +1,12 @@
 package view.publishers;
+import control.CtrPublishers;
+import javax.swing.JOptionPane;
+import model.Publisher;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Gabriel Freitas-PC
- */
 public class FmrPublishers extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FmrPublishers
-     */
+    CtrPublishers ctrPublisher;
+    Publisher publisher;
+            
     public FmrPublishers() {
         initComponents();
     }
@@ -35,9 +27,14 @@ public class FmrPublishers extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Criar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome");
 
@@ -88,6 +85,28 @@ public class FmrPublishers extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+        ctrPublisher = new CtrPublishers();
+        publisher = new Publisher();
+    }
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(!"".equals(jTextField2.getText().trim()) && !"".equals(jTextField3.getText().trim())){
+            publisher = new Publisher();
+            ctrPublisher = new CtrPublishers();
+            publisher.setName(jTextField2.getText());
+            publisher.setUrl(jTextField3.getText());
+            if (ctrPublisher.gravarPublisher(publisher) == 1) {
+            JOptionPane.showMessageDialog(null, "Editor criado com sucesso");
+            } else {
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Preecha todos os campos!!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
